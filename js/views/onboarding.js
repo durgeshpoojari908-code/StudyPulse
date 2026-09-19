@@ -394,7 +394,7 @@ export function renderOnboarding(container, navigateTo) {
             name: s.name,
             icon: s.icon || '📚',
             color: s.color || '#4F46E5',
-            progress: 50,
+            progress: 0,
             studyHours: 0,
             totalTopics: 10,
             completedTopics: 5,
