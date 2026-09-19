@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>StudyPulse — Know Your Progress. Own Your Time.</title>
+  <meta name="description" content="StudyPulse is a personal academic productivity and progress-tracking web app for college students across any course or branch. Plan, Study, Complete, Track, and Improve." />
+  <meta name="theme-color" content="#4F46E5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Design System & Stylesheets -->
+  <link rel="stylesheet" href="css/design-tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/views.css" />
+</head>
+<body>
+  <div id="app-container">
+
+    <!-- ====================================================
+         1. MOBILE FIXED STATUS BAR (Time, Signal, Wifi, Battery)
+         ==================================================== -->
+    <header class="mobile-status-bar" id="mobile-status-bar" aria-label="Device Status Bar">
+      <span class="status-time" id="mobile-status-clock">09:41</span>
+      <div class="status-icons">
+        <!-- Cellular Signal -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" x2="4" y1="18" y2="18"/>
+          <line x1="9" x2="9" y1="18" y2="14"/>
+          <line x1="14" x2="14" y1="18" y2="10"/>
+          <line x1="19" x2="19" y1="18" y2="6"/>
+        </svg>
+        <!-- Wifi -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 13a10 10 0 0 1 14 0"/>
+          <path d="M8.5 16.5a5 5 0 0 1 7 0"/>
+          <path d="M2 8.82a15 15 0 0 1 20 0"/>
+          <line x1="12" x2="12.01" y1="20" y2="20"/>
+        </svg>
+        <!-- Battery -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <rect width="16" height="10" x="2" y="7" rx="2" ry="2"/>
+          <line x1="22" x2="22" y1="11" y2="13"/>
+          <line x1="6" x2="14" y1="12" y2="12" stroke-width="3"/>
+        </svg>
+      </div>
+    </header>
+
+    <!-- ====================================================
+         2. MOBILE FIXED HEADER (Brand, Alerts, Profile)
+         ==================================================== -->
+    <header class="mobile-header" id="mobile-header">
+      <div class="mobile-brand">
+        <div class="brand-logo-icon">⚡</div>
+        <span class="brand-title">StudyPulse</span>
+      </div>
+      <div class="mobile-header-actions">
+        <button class="btn-icon" data-open-notifs aria-label="Notifications" style="position: relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notif-badge badge badge-danger" style="position: absolute; top: 2px; right: 2px; padding: 2px 5px; font-size: 9px; display: none;">0</span>
+        </button>
+        <button id="mobile-profile-btn" class="user-avatar" style="width: 32px; height: 32px; cursor: pointer;">
+          <span id="mobile-user-avatar">S</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ====================================================
+         3. DESKTOP FIXED SIDEBAR (9 Navigation Destinations)
+         ==================================================== -->
+    <aside class="desktop-sidebar" aria-label="Desktop Navigation Sidebar">
+      <div class="desktop-sidebar-brand">
+        <div class="sidebar-logo">⚡</div>
+        <div class="sidebar-brand-text">
+          <h2>StudyPulse</h2>
+          <span>Progress & Time</span>
+        </div>
+      </div>
+
+      <nav class="desktop-nav-group">
+        <div class="desktop-nav-label">Academic Hub</div>
+        <button class="desktop-nav-item active" data-view="home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Home
+        </button>
+
+        <button class="desktop-nav-item" data-view="subjects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+          </svg>
+          Subjects
+        </button>
+
+        <button class="desktop-nav-item" data-view="planner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+            <path d="m9 16 2 2 4-4"/>
+          </svg>
+          Study Planner
+        </button>
+
+        <button class="desktop-nav-item" data-view="tasks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m9 11 3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          Tasks
+        </button>
+
+        <button class="desktop-nav-item" data-view="calendar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+          Calendar
+        </button>
+
+        <div class="desktop-nav-label">Analytics & Insights</div>
+        <button class="desktop-nav-item" data-view="screentime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+            <path d="M12 18h.01"/>
+          </svg>
+          Screen Time
+        </button>
+
+        <button class="desktop-nav-item" data-view="progress">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+          Progress
+        </button>
+
+        <button class="desktop-nav-item" data-view="goals">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+          Goals
+        </button>
+
+        <button class="desktop-nav-item" data-view="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Settings
+        </button>
+      </nav>
+
+      <!-- Sidebar Bottom Profile / Mode Card -->
+      <div class="sidebar-bottom">
+        <div class="sidebar-user-pill" id="sidebar-user-card">
+          <div class="user-avatar" id="desktop-user-avatar">S</div>
+          <div class="user-info">
+            <div class="user-name" id="desktop-user-name">Student</div>
+            <div class="user-goal-tag" id="desktop-user-goal">Target: 3h/day</div>
+          </div>
+        </div>
+        <button class="btn-icon" id="desktop-theme-toggle" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ====================================================
+         4. DESKTOP FIXED TOP HEADER (Search, Notifs, Profile)
+         ==================================================== -->
+    <header class="desktop-header" aria-label="Desktop Top Header">
+      <div class="desktop-header-left">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="text" id="desktop-search-input" placeholder="Quick search tasks, assignments..." />
+          <span class="search-kbd">Ctrl K</span>
+        </div>
+      </div>
+
+      <div class="desktop-header-right">
+        <button class="btn-icon" data-open-notifs aria-label="Notification Center" style="position: relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notif-badge badge badge-danger" style="position: absolute; top: 2px; right: 2px; padding: 2px 5px; font-size: 9px; display: none;">0</span>
+        </button>
+
+        <button class="btn-secondary btn-sm" onclick="window.navigateTo('planner')">
+          ⚡ Plan Today
+        </button>
+      </div>
+    </header>
+
+    <!-- ====================================================
+         5. MAIN SCROLLABLE CONTENT VIEWPORT
+         ==================================================== -->
+    <main id="main-viewport" class="main-viewport" role="main"></main>
+
+    <!-- ====================================================
+         6. MOBILE FIXED BOTTOM NAVIGATION
+         ==================================================== -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <button class="nav-item active" data-view="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-item" data-view="subjects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+          <path d="M6 6h10"/>
+          <path d="M6 10h10"/>
+        </svg>
+        <span>Subjects</span>
+      </button>
+
+      <button class="nav-item" data-view="tasks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m9 11 3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span>Tasks</span>
+      </button>
+
+      <button class="nav-item" data-view="progress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+          <polyline points="16 7 22 7 22 13"/>
+        </svg>
+        <span>Progress</span>
+      </button>
+
+      <button class="nav-item" data-view="profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Profile</span>
+      </button>
+    </nav>
+
+    <!-- ====================================================
+         7. NOTIFICATION CENTER DRAWER
+         ==================================================== -->
+    <div id="notification-drawer-overlay" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); z-index: 240; backdrop-filter: blur(4px);"></div>
+    <div id="notification-drawer" class="notification-drawer">
+      <div class="notification-drawer-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <h3 style="font-size: 16px; font-weight: 800;">Notifications</h3>
+          <span class="notif-badge badge badge-primary" style="display: none;">0</span>
+        </div>
+        <div style="display: flex; gap: 4px;">
+          <button id="btn-clear-notifs" class="btn-ghost btn-sm" style="font-size: 11px;">Clear All</button>
+          <button id="btn-close-notif-drawer" class="btn-icon" style="width: 28px; height: 28px;">✕</button>
+        </div>
+      </div>
+      <div id="notif-drawer-list" class="notification-list"></div>
+    </div>
+
+    <!-- ====================================================
+         8. MODAL SHEET CONTAINER
+         ==================================================== -->
+    <div id="modal-container"></div>
+
+    <!-- ====================================================
+         9. TOAST NOTIFICATIONS
+         ==================================================== -->
+    <div id="toast-container"></div>
+
+  </div>
+
+  <!-- Main JavaScript Module -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

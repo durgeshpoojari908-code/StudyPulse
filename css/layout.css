@@ -1,0 +1,484 @@
+/* Responsive App Shell & 3 Intentional Layouts */
+
+/* Top Level Wrapper */
+#app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-bg);
+}
+
+/* =======================================================
+   1. MOBILE LAYOUT (< 768px) - Primary Mobile-First Target
+   ======================================================= */
+
+/* Fixed Mobile Status Bar */
+.mobile-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--mobile-status-height);
+  padding: 0 var(--space-2);
+  background: var(--color-status-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+  color: var(--color-status-text);
+  font-size: 13px;
+  font-weight: 600;
+  user-select: none;
+}
+
+[data-theme="dark"] .mobile-status-bar {
+  border-bottom: 1px solid rgba(42, 51, 82, 0.4);
+}
+
+.status-time {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-icons svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Fixed Mobile Header */
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 var(--space-2);
+  background: var(--color-header-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: fixed;
+  top: var(--mobile-status-height);
+  left: 0;
+  right: 0;
+  z-index: 90;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.mobile-brand .brand-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.35);
+}
+
+.mobile-brand .brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.mobile-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Mobile Scrollable Viewport */
+.main-viewport {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* Space for fixed top status/header and bottom nav on mobile */
+  padding-top: calc(var(--mobile-status-height) + var(--header-height) + var(--space-2));
+  padding-bottom: calc(var(--mobile-nav-height) + var(--space-4));
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+}
+
+/* Fixed Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--mobile-nav-height);
+  background: var(--color-nav-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--color-nav-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 var(--space-1);
+  z-index: 100;
+  box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 0;
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  transition: transform var(--transition-fast), stroke var(--transition-fast);
+}
+
+.nav-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.nav-item.active svg {
+  transform: translateY(-2px);
+  stroke: var(--color-primary);
+}
+
+/* Hide desktop elements on mobile */
+.desktop-sidebar, .desktop-header {
+  display: none !important;
+}
+
+/* =======================================================
+   2. DESKTOP LAYOUT (> 1024px) - Intentionally Different
+   ======================================================= */
+@media (min-width: 1025px) {
+  /* Hide mobile-specific chrome */
+  .mobile-status-bar,
+  .mobile-header,
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  /* Fixed Desktop Sidebar */
+  .desktop-sidebar {
+    display: flex !important;
+    flex-direction: column;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--color-card);
+    border-right: 1px solid var(--color-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 80;
+    overflow-y: auto;
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .desktop-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: var(--space-1) var(--space-1) var(--space-3) var(--space-1);
+    margin-bottom: var(--space-1);
+  }
+
+  .sidebar-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 18px;
+    box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+  }
+
+  .sidebar-brand-text h2 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .sidebar-brand-text span {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    display: block;
+    font-weight: 500;
+  }
+
+  .desktop-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .desktop-nav-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+    padding: var(--space-1) var(--space-2);
+    margin-top: var(--space-1);
+  }
+
+  .desktop-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: 10px 14px;
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: transparent;
+    border: none;
+    text-align: left;
+    width: 100%;
+  }
+
+  .desktop-nav-item:hover {
+    background: var(--color-card-subtle);
+    color: var(--color-text);
+  }
+
+  .desktop-nav-item.active {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .desktop-nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebar-bottom {
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-user-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+    flex: 1;
+  }
+
+  .sidebar-user-pill:hover {
+    background: var(--color-card-subtle);
+  }
+
+  .user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .user-info {
+    overflow: hidden;
+  }
+
+  .user-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-goal-tag {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Desktop Top Header */
+  .desktop-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: var(--header-height);
+    background: var(--color-header-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 var(--space-4);
+    z-index: 70;
+  }
+
+  .desktop-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    width: 320px;
+    transition: all var(--transition-fast);
+  }
+
+  .search-box:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    width: 380px;
+  }
+
+  .search-box svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-muted);
+  }
+
+  .search-box input {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .search-box input:focus {
+    box-shadow: none;
+  }
+
+  .search-kbd {
+    font-size: 10px;
+    background: var(--color-card-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .desktop-header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  /* Desktop Main Viewport */
+  .main-viewport {
+    margin-left: var(--sidebar-width);
+    padding-top: calc(var(--header-height) + var(--space-4));
+    padding-bottom: var(--space-6);
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    max-width: 1440px;
+  }
+
+  /* Multi-column grid classes for desktop */
+  .grid-dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .grid-4-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2);
+  }
+}
+
+/* =======================================================
+   3. TABLET LAYOUT (768px - 1024px)
+   ======================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablet keeps mobile status & header but widens cards */
+  .main-viewport {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .grid-dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .grid-4-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+}
